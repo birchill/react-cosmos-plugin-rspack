@@ -50,7 +50,8 @@ async function getBaseRspackConfig(cosmosConfig: CosmosConfig) {
   const { configPath } = createRspackCosmosConfig(cosmosConfig);
 
   if (!configPath || !moduleExists(configPath)) {
-    console.log('[Cosmos] Using default webpack config');
+    console.log('[Cosmos] Using default rspack config');
+    // XXX Up to here
     return getDefaultRspackConfig(rootDir);
   }
 

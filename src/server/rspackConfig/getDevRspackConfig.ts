@@ -23,16 +23,17 @@ import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js'
 export async function getDevRspackConfig(
   cosmosConfig: CosmosConfig
 ): Promise<rspack.Configuration> {
-  const baseWebpackConfig = await getUserRspackConfig(cosmosConfig);
+  // XXX Up to here
+  const baseRspackConfig = await getUserRspackConfig(cosmosConfig);
 
-  const webpackConfig = {
-    ...baseWebpackConfig,
+  const rspackConfig = {
+    ...baseRspackConfig,
     entry: getEntry(cosmosConfig),
     output: getOutput(cosmosConfig),
-    module: getWebpackConfigModule(cosmosConfig, baseWebpackConfig),
-    resolve: getWebpackConfigResolve(cosmosConfig, baseWebpackConfig),
-    plugins: getPlugins(cosmosConfig, baseWebpackConfig, userWebpack),
-    experiments: getExperiments(baseWebpackConfig),
+    module: getWebpackConfigModule(cosmosConfig, baseRspackConfig),
+    resolve: getWebpackConfigResolve(cosmosConfig, baseRspackConfig),
+    plugins: getPlugins(cosmosConfig, baseRspackConfig, userWebpack),
+    experiments: getExperiments(baseRspackConfig),
   };
 
   // optimization.splitChunks.name = false breaks auto fixture file discovery.
@@ -45,12 +46,12 @@ export async function getDevRspackConfig(
   // https://github.com/facebook/create-react-app/blob/37712374bcaa6ccb168eeaf4fe8bd52d120dbc58/packages/react-scripts/config/webpack.config.js#L286
   // Apparently it's a webpack 4 bug:
   // https://twitter.com/wSokra/status/1255925851557974016
-  if (webpackConfig.optimization?.splitChunks) {
-    const { name } = webpackConfig.optimization.splitChunks;
-    if (name === false) delete webpackConfig.optimization.splitChunks.name;
+  if (rspackConfig.optimization?.splitChunks) {
+    const { name } = rspackConfig.optimization.splitChunks;
+    if (name === false) delete rspackConfig.optimization.splitChunks.name;
   }
 
-  return webpackConfig;
+  return rspackConfig;
 }
 
 function getEntry(cosmosConfig: CosmosConfig) {

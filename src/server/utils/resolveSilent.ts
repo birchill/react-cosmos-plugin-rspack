@@ -1,10 +1,20 @@
 import { isNodeError } from './isNodeError.js';
-import { requireFrom } from './requireModule.js';
+import { resolve, resolveFrom } from './resolve.js';
 
-export function requireFromSilent(fromDirectory: string, moduleId: string) {
+export function resolveSilent(moduleId: string) {
   try {
-    return requireFrom(fromDirectory, moduleId);
+    return resolve(moduleId);
   } catch (err) {
     if (!isNodeError(err) || err.code !== 'MODULE_NOT_FOUND') console.log(err);
+    return null;
+  }
+}
+
+export function resolveFromSilent(fromDirectory: string, moduleId: string) {
+  try {
+    return resolveFrom(fromDirectory, moduleId);
+  } catch (err) {
+    if (!isNodeError(err) || err.code !== 'MODULE_NOT_FOUND') console.log(err);
+    return null;
   }
 }
