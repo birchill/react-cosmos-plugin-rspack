@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2020",
+    "jsx": "react"
+  },
+  "exclude": ["node_modules", "dist"]
+}

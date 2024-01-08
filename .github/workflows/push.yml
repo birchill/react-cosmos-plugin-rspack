@@ -1,0 +1,27 @@
+name: Test
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+env:
+  CI: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Build
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: yarn
+          node-version: 20
+
+      - name: Install
+        run: yarn install
+
+      - name: Verify build
+        run: yarn build
