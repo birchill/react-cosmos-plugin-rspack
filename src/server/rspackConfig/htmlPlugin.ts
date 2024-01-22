@@ -1,14 +1,12 @@
 import rspack from '@rspack/core';
-// XXX Should this be a dev dependency?
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
-// XXX See if we can drop this depndency
-import { omit } from 'lodash-es';
 import { CosmosConfig } from 'react-cosmos';
 
+import { omit } from '../utils/omit.js';
 import { requireFromSilent } from '../utils/requireSilent.js';
+
 import { RENDERER_FILENAME } from './constants.js';
-// XXX Import this
-import { hasPlugin, isInstanceOfWebpackPlugin } from './plugins.js';
+import { hasPlugin, isInstanceOfRspackPlugin } from './plugins.js';
 
 // prettier-ignore
 export type HtmlWebpackPlugin = rspack.RspackPluginInstance & {
@@ -56,7 +54,7 @@ export function getHtmlWebpackPlugin(rootDir: string) {
 function isHtmlWebpackPlugin(
   plugin: rspack.RspackPluginInstance
 ): plugin is HtmlWebpackPlugin {
-  return isInstanceOfWebpackPlugin(plugin, 'HtmlWebpackPlugin');
+  return isInstanceOfRspackPlugin(plugin, 'HtmlWebpackPlugin');
 }
 
 function changeHtmlPluginFilename(htmlPlugin: HtmlWebpackPlugin) {
@@ -65,7 +63,7 @@ function changeHtmlPluginFilename(htmlPlugin: HtmlWebpackPlugin) {
   }
 
   const options = htmlPlugin.userOptions || htmlPlugin.options;
-  const safeOptions = omit(options, 'chunks');
+  const safeOptions = omit(options, ['chunks']);
 
   return new htmlPlugin.constructor({
     ...safeOptions,

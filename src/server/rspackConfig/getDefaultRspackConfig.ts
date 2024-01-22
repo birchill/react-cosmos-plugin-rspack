@@ -3,24 +3,13 @@ import rspack from '@rspack/core';
 import { resolveFromSilent } from '../utils/resolveSilent.js';
 import { RENDERER_FILENAME } from './constants.js';
 import { getRspackNodeEnv } from './getRspackNodeEnv.js';
-// XXX
-/*
 import { getHtmlWebpackPlugin } from './htmlPlugin.js';
-*/
 
 // This config doesn't have entry and output set up because it's not meant to
 // work standalone. An entry & output will be added to this base config.
 export function getDefaultRspackConfig(rootDir: string): rspack.Configuration {
-  // XXX This is going to need a _lot_ of work
-
   // react-cosmos doesn't directly depend on any webpack loader.
   // Instead, it includes the ones already installed by the user.
-  const tsLoaderPath = resolveFromSilent(rootDir, 'ts-loader');
-  const babelLoaderPath =
-    resolveFromSilent(rootDir, 'next/dist/compiled/babel-loader') ||
-    resolveFromSilent(rootDir, 'babel-loader');
-  const styleLoaderPath = resolveFromSilent(rootDir, 'style-loader');
-  const cssLoaderPath = resolveFromSilent(rootDir, 'css-loader');
   const postcssLoaderPath = resolveFromSilent(rootDir, 'postcss-loader');
   // Note: Since webpack >= v2.0.0, importing of JSON files will work by default
   const jsonLoaderPath = resolveFromSilent(rootDir, 'json-loader');
@@ -29,54 +18,49 @@ export function getDefaultRspackConfig(rootDir: string): rspack.Configuration {
   const rules: rspack.RuleSetRule[] = [];
   const plugins: rspack.RspackPluginInstance[] = [];
 
-  // Prefer babel-loader over ts-loader if user has both installed. If user
-  // has babel-loader installed then most likely they won't want ts-loader
-  // to handle module transformation.
-  if (babelLoaderPath) {
-    rules.push({
-      test: /\.(js|ts)x?$/,
-      exclude: /node_modules/,
-      use: {
-        loader: babelLoaderPath,
-        options: {
-          root: rootDir,
+  // Add standard TS transformation
+  rules.push({
+    test: /\.(j|t)s$/,
+    exclude: [/[\\/]node_modules[\\/]/],
+    loader: 'builtin:swc-loader',
+    options: {
+      sourceMap: true,
+      jsc: { parser: { syntax: 'typescript' } },
+    },
+    type: 'javascript/auto',
+  });
+  rules.push({
+    test: /\.(j|t)sx$/,
+    loader: 'builtin:swc-loader',
+    exclude: [/[\\/]node_modules[\\/]/],
+    options: {
+      sourceMap: true,
+      jsc: {
+        parser: {
+          syntax: 'typescript',
+          tsx: true,
         },
+        transform: { react: { runtime: 'automatic' } },
       },
-    });
-  } else if (tsLoaderPath) {
-    rules.push({
-      test: /\.tsx?$/,
-      loader: tsLoaderPath,
-    });
-  }
+    },
+    type: 'javascript/auto',
+  });
 
-  if (styleLoaderPath && cssLoaderPath) {
-    if (postcssLoaderPath) {
-      rules.push({
-        test: /\.css$/,
-        use: [
-          styleLoaderPath,
-          { loader: cssLoaderPath, options: { importLoaders: 1 } },
-          postcssLoaderPath,
-        ],
-        exclude: /node_modules/,
-      });
-    } else {
-      rules.push({
-        test: /\.css$/,
-        use: [{ loader: styleLoaderPath }, { loader: cssLoaderPath }],
-        exclude: /node_modules/,
-      });
-    }
+  // Style loading
+  rules.push({
+    test: /\.css?$/,
+    exclude: [/[\\/]node_modules[\\/]/],
+    use: postcssLoaderPath ? [{ loader: postcssLoaderPath }] : undefined,
+    type: 'css',
+  });
 
-    // Preprocess 3rd party .css files located in node_modules
-    rules.push({
-      test: /\.css$/,
-      use: [{ loader: styleLoaderPath }, { loader: cssLoaderPath }],
-      include: /node_modules/,
-    });
-  }
+  // Fonts -- XXX Is this right?
+  rules.push({
+    test: /\.woff2?$/,
+    type: 'asset/resource',
+  });
 
+  // XXX Up to here --- need to work out what rspack does for JSON and MDX
   if (jsonLoaderPath) {
     rules.push({
       test: /\.json$/,

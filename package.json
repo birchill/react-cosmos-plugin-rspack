@@ -16,8 +16,9 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "8.0.1",
-    "@rspack/core": "^0.4.5",
+    "@rspack/core": "^0.5.1",
     "@types/node": "20.10.7",
+    "html-webpack-plugin": "5.6.0",
     "react-cosmos": "6.0.0-beta.10",
     "react-cosmos-ui": "6.0.0-beta.10",
     "react-error-overlay": "6.0.9",
