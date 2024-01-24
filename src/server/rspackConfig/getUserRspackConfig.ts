@@ -51,7 +51,6 @@ async function getBaseRspackConfig(cosmosConfig: CosmosConfig) {
 
   if (!configPath || !moduleExists(configPath)) {
     console.log('[Cosmos] Using default rspack config');
-    // XXX Up to here
     return getDefaultRspackConfig(rootDir);
   }
 
@@ -61,11 +60,13 @@ async function getBaseRspackConfig(cosmosConfig: CosmosConfig) {
   const module = await importModule<{ default: RspackConfig }>(configPath);
   const rspackConfig = module.default;
 
-  // XXX Check if this holds for rspack
-  // The --env flag matches the webpack CLI convention
-  // https://webpack.js.org/api/cli/#env
   const cliArgs = getCliArgs();
   return typeof rspackConfig === 'function'
-    ? await rspackConfig(cliArgs.env || getRspackNodeEnv(), cliArgs)
+    ? // When cliargs.env is falsey, react-cosmos-plugin-webpack passes the result
+      // of getRspackNodeEnv() which is the string "production" or "development"
+      // but that doesn't seem to be what webpack does:
+      //
+      // https://github.com/webpack/webpack-cli/blob/79a969fb02c870667d8a3b7035405566d2b4d088/packages/webpack-cli/src/webpack-cli.ts#L1903C35-L1903C43
+      await rspackConfig(cliArgs.env, cliArgs)
     : rspackConfig;
 }

@@ -7,8 +7,8 @@ import { createRspackCosmosConfig } from '../cosmosConfig/createRspackCosmosConf
 import { resolve } from '../utils/resolve.js';
 */
 import { getUserRspackConfig } from './getUserRspackConfig.js';
-/*
 import { getRspackConfigModule } from './getRspackConfigModule.js';
+/*
 import { getRspackConfigResolve } from './getRspackConfigResolve.js';
 import { ensureHtmlWebpackPlugin } from './htmlPlugin.js';
 import {
@@ -23,14 +23,14 @@ import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js'
 export async function getDevRspackConfig(
   cosmosConfig: CosmosConfig
 ): Promise<rspack.Configuration> {
-  // XXX Up to here
   const baseRspackConfig = await getUserRspackConfig(cosmosConfig);
 
   const rspackConfig = {
     ...baseRspackConfig,
     entry: getEntry(cosmosConfig),
     output: getOutput(cosmosConfig),
-    module: getWebpackConfigModule(cosmosConfig, baseRspackConfig),
+    module: getRspackConfigModule(cosmosConfig, baseRspackConfig),
+    // XXX Up to here
     resolve: getWebpackConfigResolve(cosmosConfig, baseRspackConfig),
     plugins: getPlugins(cosmosConfig, baseRspackConfig, userWebpack),
     experiments: getExperiments(baseRspackConfig),
