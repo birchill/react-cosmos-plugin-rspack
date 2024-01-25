@@ -4,9 +4,7 @@ import { DevServerPluginArgs, serveStaticDir } from 'react-cosmos';
 import { ServerMessage } from 'react-cosmos-core';
 // import webpackHotMiddleware from 'webpack-hot-middleware';
 
-/*
-import { createWebpackCosmosConfig } from './cosmosConfig/createWebpackCosmosConfig.js';
-*/
+import { createRspackCosmosConfig } from './cosmosConfig/createRspackCosmosConfig.js';
 import { getRspack } from './getRspack.js';
 import { getDevRspackConfig } from './rspackConfig/getDevRspackConfig.js';
 
@@ -31,18 +29,18 @@ export async function rspackDevServerPlugin({
     return;
   }
 
-  // XXX Up to here
-  const webpackConfig = (await getDevRspackConfig(
-    cosmosConfig
+  const rspackConfig = (await getDevRspackConfig(
+    cosmosConfig,
+    userRspack
   )) as RspackConfig;
 
-  // Serve static path derived from devServer.contentBase webpack config
+  // Serve static path derived from devServer.contentBase rspack config
   if (cosmosConfig.staticPath === null) {
-    const webpackDerivedStaticPath = getWebpackStaticPath(webpackConfig);
-    if (webpackDerivedStaticPath !== null) {
+    const rspackDerivedStaticPath = getRspackStaticPath(rspackConfig);
+    if (rspackDerivedStaticPath !== null) {
       serveStaticDir(
         expressApp,
-        path.resolve(cosmosConfig.rootDir, webpackDerivedStaticPath),
+        path.resolve(cosmosConfig.rootDir, rspackDerivedStaticPath),
         cosmosConfig.publicUrl
       );
     }
@@ -52,13 +50,14 @@ export async function rspackDevServerPlugin({
     sendMessage(msg);
   }
 
-  const rspackCompiler = userRspack(webpackConfig);
+  // XXX Up to here
+  const rspackCompiler = userRspack(rspackConfig);
   rspackCompiler.hooks.invalid.tap('Cosmos', (filePath) => {
     if (typeof filePath === 'string') {
       const relFilePath = path.relative(process.cwd(), filePath);
-      console.log('[Cosmos] webpack build invalidated by', relFilePath);
+      console.log('[Cosmos] rspack build invalidated by', relFilePath);
     } else {
-      console.log('[Cosmos] webpack build invalidated by unknown file');
+      console.log('[Cosmos] rspack build invalidated by unknown file');
     }
     sendBuildMessage({ type: 'buildStart' });
   });
@@ -76,7 +75,7 @@ export async function rspackDevServerPlugin({
     });
   });
 
-  console.log('[Cosmos] Building webpack...');
+  console.log('[Cosmos] Building rspack...');
 
   // Why import WDM here instead of at module level? Because it imports webpack,
   // which might not be installed in the user's codebase. If this were to happen
@@ -93,7 +92,7 @@ export async function rspackDevServerPlugin({
 
   expressApp.use(wdmInst);
 
-  const { hotReload } = createWebpackCosmosConfig(cosmosConfig);
+  const { hotReload } = createRspackCosmosConfig(cosmosConfig);
   if (hotReload) {
     expressApp.use(webpackHotMiddleware(rspackCompiler));
   }
@@ -105,7 +104,7 @@ export async function rspackDevServerPlugin({
   };
 }
 
-function getWebpackStaticPath({ devServer }: RspackConfig) {
+function getRspackStaticPath({ devServer }: RspackConfig) {
   return devServer && typeof devServer.contentBase === 'string'
     ? devServer.contentBase
     : null;

@@ -2,13 +2,10 @@ import rspack from '@rspack/core';
 import * as path from 'node:path';
 import { CosmosConfig } from 'react-cosmos';
 
-/*
 import { createRspackCosmosConfig } from '../cosmosConfig/createRspackCosmosConfig.js';
 import { resolve } from '../utils/resolve.js';
-*/
 import { getUserRspackConfig } from './getUserRspackConfig.js';
 import { getRspackConfigModule } from './getRspackConfigModule.js';
-/*
 import { getRspackConfigResolve } from './getRspackConfigResolve.js';
 import { ensureHtmlWebpackPlugin } from './htmlPlugin.js';
 import {
@@ -18,10 +15,10 @@ import {
 } from './plugins.js';
 import { resolveRspackClientPath } from './resolveRspackClientPath.js';
 import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js';
-*/
 
 export async function getDevRspackConfig(
-  cosmosConfig: CosmosConfig
+  cosmosConfig: CosmosConfig,
+  userRspack: typeof rspack
 ): Promise<rspack.Configuration> {
   const baseRspackConfig = await getUserRspackConfig(cosmosConfig);
 
@@ -30,12 +27,14 @@ export async function getDevRspackConfig(
     entry: getEntry(cosmosConfig),
     output: getOutput(cosmosConfig),
     module: getRspackConfigModule(cosmosConfig, baseRspackConfig),
-    // XXX Up to here
-    resolve: getWebpackConfigResolve(cosmosConfig, baseRspackConfig),
-    plugins: getPlugins(cosmosConfig, baseRspackConfig, userWebpack),
+    resolve: getRspackConfigResolve(cosmosConfig, baseRspackConfig),
+    plugins: getPlugins(cosmosConfig, baseRspackConfig, userRspack),
     experiments: getExperiments(baseRspackConfig),
   };
 
+  // The following comment is from react-cosmos-plugin-webpack and likely
+  // doesn't apply to rspack.
+  //
   // optimization.splitChunks.name = false breaks auto fixture file discovery.
   // When the splitChunks.name is set to false, existing fixtures hot reload
   // fine, but added or removed fixture files don't appear or disappear in the
@@ -55,11 +54,11 @@ export async function getDevRspackConfig(
 }
 
 function getEntry(cosmosConfig: CosmosConfig) {
-  const { hotReload, reloadOnFail } = createWebpackCosmosConfig(cosmosConfig);
+  const { hotReload, reloadOnFail } = createRspackCosmosConfig(cosmosConfig);
   // The React devtools hook needs to be imported before any other module that
   // might import React
-  const devtoolsHook = resolveWebpackClientPath('reactDevtoolsHook');
-  const clientIndex = resolveWebpackClientPath('index');
+  const devtoolsHook = resolveRspackClientPath('reactDevtoolsHook');
+  const clientIndex = resolveRspackClientPath('index');
 
   return hotReload
     ? [devtoolsHook, getHotMiddlewareEntry(reloadOnFail), clientIndex]
@@ -79,21 +78,22 @@ function getOutput({ publicUrl }: CosmosConfig) {
 
 function getPlugins(
   cosmosConfig: CosmosConfig,
-  baseWebpackConfig: webpack.Configuration,
-  userWebpack: typeof webpack
+  baseRspackConfig: rspack.Configuration,
+  userRspack: typeof rspack
 ) {
-  const existingPlugins = ignoreEmptyWebpackPlugins(baseWebpackConfig.plugins);
-  const globalsPlugin = getGlobalsPlugin(cosmosConfig, userWebpack, true);
-  const noEmitErrorsPlugin = new userWebpack.NoEmitOnErrorsPlugin();
-  let plugins = [...existingPlugins, globalsPlugin, noEmitErrorsPlugin];
+  const existingPlugins = ignoreEmptyRspackPlugins(baseRspackConfig.plugins);
+  const globalsPlugin = getGlobalsPlugin(cosmosConfig, userRspack, true);
+  // react-cosmos-plugin-webpack configures the NoEmitOnErrorsPlugin, but rspack
+  // doesn't appear to support that.
+  let plugins = [...existingPlugins, globalsPlugin];
 
-  const { hotReload } = createWebpackCosmosConfig(cosmosConfig);
+  const { hotReload } = createRspackCosmosConfig(cosmosConfig);
   if (hotReload && !hasPlugin(plugins, 'HotModuleReplacementPlugin')) {
-    const hmrPlugin = new userWebpack.HotModuleReplacementPlugin();
+    const hmrPlugin = new userRspack.HotModuleReplacementPlugin();
     plugins = [...plugins, hmrPlugin];
   }
 
-  return ensureHtmlWebackPlugin(cosmosConfig, plugins);
+  return ensureHtmlWebpackPlugin(cosmosConfig, plugins);
 }
 
 function getHotMiddlewareEntry(reloadOnFail: boolean) {
@@ -101,6 +101,6 @@ function getHotMiddlewareEntry(reloadOnFail: boolean) {
   return `${clientPath}?reload=${reloadOnFail}&overlay=false`;
 }
 
-function getExperiments(baseWebpackConfig: webpack.Configuration) {
-  return ensureWebpackConfigTopLevelAwait(baseWebpackConfig);
+function getExperiments(baseWebpackConfig: rspack.Configuration) {
+  return ensureRspackConfigTopLevelAwait(baseWebpackConfig);
 }

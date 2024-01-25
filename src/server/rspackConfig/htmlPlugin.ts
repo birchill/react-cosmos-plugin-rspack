@@ -20,7 +20,7 @@ type HtmlWebpackPluginConstructor = new (
   options?: HtmlWebpackPluginOptions
 ) => HtmlWebpackPlugin;
 
-export function ensureHtmlWebackPlugin(
+export function ensureHtmlWebpackPlugin(
   { rootDir }: CosmosConfig,
   plugins: rspack.RspackPluginInstance[]
 ): rspack.RspackPluginInstance[] {
