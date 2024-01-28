@@ -2,7 +2,7 @@ import type { Configuration } from '@rspack/core';
 import * as path from 'node:path';
 import { type DevServerPluginArgs, serveStaticDir } from 'react-cosmos';
 import type { ServerMessage } from 'react-cosmos-core';
-// import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import { createRspackCosmosConfig } from './cosmosConfig/createRspackCosmosConfig.js';
 import { getRspack } from './getRspack.js';
@@ -76,7 +76,6 @@ export async function rspackDevServerPlugin({
 
   console.log('[Cosmos] Building rspack...');
 
-  // XXX Up to here
   // Why import WDM here instead of at module level? Because it imports webpack,
   // which might not be installed in the user's codebase. If this were to happen
   // the Cosmos server would crash with a cryptic import error. See import here:
@@ -84,17 +83,30 @@ export async function rspackDevServerPlugin({
   // Instead, prior to importing WDM we check if webpack is installed and fail
   // gracefully if not.
   const wdmModule = await import('webpack-dev-middleware');
-  const wdmInst = wdmModule.default(rspackCompiler as any, {
-    // publicPath is the base path for the webpack assets and has to match
-    // webpack.output.publicPath
-    publicPath: cosmosConfig.publicUrl,
-  });
+  const wdmInst = wdmModule.default(
+    // Rspack's Compiler type is pretty close to webpack's Compiler type, but
+    // is missing a few members. Hopefully WDM doesn't need them, however.
+    // @rspack/dev-server itself uses webpack-dev-middleware so it should be
+    // fine.
+    rspackCompiler as unknown as import('webpack').Compiler,
+    {
+      // publicPath is the base path for the rspack assets and has to match
+      // rspack.output.publicPath
+      publicPath: cosmosConfig.publicUrl,
+    }
+  );
 
   expressApp.use(wdmInst);
 
   const { hotReload } = createRspackCosmosConfig(cosmosConfig);
   if (hotReload) {
-    expressApp.use(webpackHotMiddleware(rspackCompiler));
+    expressApp.use(
+      webpackHotMiddleware(
+        // As above, rspack's Compiler type is pretty close to webpack's
+        // Compiler type so this should be fine.
+        rspackCompiler as unknown as import('webpack').Compiler
+      )
+    );
   }
 
   await onCompilationDone;
