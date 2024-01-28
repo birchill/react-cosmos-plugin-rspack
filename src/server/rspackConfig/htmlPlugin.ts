@@ -1,6 +1,6 @@
-import rspack from '@rspack/core';
+import type { RspackPluginInstance } from '@rspack/core';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
-import { CosmosConfig } from 'react-cosmos';
+import type { CosmosConfig } from 'react-cosmos';
 
 import { omit } from '../utils/omit.js';
 import { requireFromSilent } from '../utils/requireSilent.js';
@@ -9,7 +9,7 @@ import { RENDERER_FILENAME } from './constants.js';
 import { hasPlugin, isInstanceOfRspackPlugin } from './plugins.js';
 
 // prettier-ignore
-export type HtmlWebpackPlugin = rspack.RspackPluginInstance & {
+export type HtmlWebpackPlugin = RspackPluginInstance & {
   constructor: HtmlWebpackPluginConstructor;
 } & (
   | { options: HtmlWebpackPluginOptions; userOptions: undefined } // html-webpack-plugin < 5
@@ -22,8 +22,8 @@ type HtmlWebpackPluginConstructor = new (
 
 export function ensureHtmlWebpackPlugin(
   { rootDir }: CosmosConfig,
-  plugins: rspack.RspackPluginInstance[]
-): rspack.RspackPluginInstance[] {
+  plugins: RspackPluginInstance[]
+): RspackPluginInstance[] {
   if (hasPlugin(plugins, 'HtmlWebpackPlugin')) {
     return plugins.map((plugin) =>
       isHtmlWebpackPlugin(plugin) ? changeHtmlPluginFilename(plugin) : plugin
@@ -52,7 +52,7 @@ export function getHtmlWebpackPlugin(rootDir: string) {
 }
 
 function isHtmlWebpackPlugin(
-  plugin: rspack.RspackPluginInstance
+  plugin: RspackPluginInstance
 ): plugin is HtmlWebpackPlugin {
   return isInstanceOfRspackPlugin(plugin, 'HtmlWebpackPlugin');
 }

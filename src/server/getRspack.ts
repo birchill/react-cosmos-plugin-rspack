@@ -1,4 +1,4 @@
-import rspack from '@rspack/core';
+import type rspack from '@rspack/core';
 
 import { requireFromSilent } from './utils/requireSilent.js';
 
@@ -15,5 +15,5 @@ export function getRspack(rootDir: string) {
     return;
   }
 
-  return userRspack;
+  return userRspack.rspack;
 }

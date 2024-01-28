@@ -1,4 +1,8 @@
-import rspack from '@rspack/core';
+import type {
+  Configuration,
+  RuleSetRule,
+  RspackPluginInstance,
+} from '@rspack/core';
 
 import { resolveFromSilent } from '../utils/resolveSilent.js';
 import { RENDERER_FILENAME } from './constants.js';
@@ -7,14 +11,14 @@ import { getHtmlWebpackPlugin } from './htmlPlugin.js';
 
 // This config doesn't have entry and output set up because it's not meant to
 // work standalone. An entry & output will be added to this base config.
-export function getDefaultRspackConfig(rootDir: string): rspack.Configuration {
+export function getDefaultRspackConfig(rootDir: string): Configuration {
   // react-cosmos doesn't directly depend on any webpack loader.
   // Instead, it includes the ones already installed by the user.
   const postcssLoaderPath = resolveFromSilent(rootDir, 'postcss-loader');
   const mdxLoaderPath = resolveFromSilent(rootDir, '@mdx-js/loader');
 
-  const rules: rspack.RuleSetRule[] = [];
-  const plugins: rspack.RspackPluginInstance[] = [];
+  const rules: RuleSetRule[] = [];
+  const plugins: RspackPluginInstance[] = [];
 
   // Add standard TS transformation
   rules.push({
@@ -70,7 +74,7 @@ export function getDefaultRspackConfig(rootDir: string): rspack.Configuration {
     );
   }
 
-  const config: rspack.Configuration = {
+  const config: Configuration = {
     // Besides other advantages, cheap-module-source-map is compatible with
     // React.componentDidCatch https://github.com/facebook/react/issues/10441
     devtool: 'cheap-module-source-map',

@@ -1,7 +1,7 @@
-import rspack from '@rspack/core';
+import type { Configuration } from '@rspack/core';
 import * as path from 'node:path';
 import {
-  CosmosConfig,
+  type CosmosConfig,
   getCliArgs,
   importModule,
   moduleExists,
@@ -12,18 +12,12 @@ import { getDefaultRspackConfig } from './getDefaultRspackConfig.js';
 import { getRspackNodeEnv } from './getRspackNodeEnv.js';
 
 type RspackConfig =
-  | rspack.Configuration
+  | Configuration
   // Mirror rspack/webpack API for config functions
   // https://webpack.js.org/configuration/configuration-types/#exporting-a-function
-  | ((
-      env: unknown,
-      _argv: {}
-    ) => rspack.Configuration | Promise<rspack.Configuration>);
+  | ((env: unknown, _argv: {}) => Configuration | Promise<Configuration>);
 
-type RspackOverride = (
-  baseConfig: rspack.Configuration,
-  env: string
-) => rspack.Configuration;
+type RspackOverride = (baseConfig: Configuration, env: string) => Configuration;
 
 export async function getUserRspackConfig(cosmosConfig: CosmosConfig) {
   const baseRspackConfig = await getBaseRspackConfig(cosmosConfig);

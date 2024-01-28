@@ -1,8 +1,8 @@
-import rspack from '@rspack/core';
+import type { Configuration } from '@rspack/core';
 
 export function ensureRspackConfigTopLevelAwait(
-  baseWebpackConfig: rspack.Configuration
-): rspack.Configuration['experiments'] {
+  baseWebpackConfig: Configuration
+): Configuration['experiments'] {
   const experiments = baseWebpackConfig.experiments || {};
   if (!experiments.topLevelAwait) {
     experiments.topLevelAwait = true;

@@ -1,4 +1,4 @@
-import rspack from '@rspack/core';
+import type { Configuration, rspack } from '@rspack/core';
 import * as path from 'node:path';
 import { CosmosConfig } from 'react-cosmos';
 
@@ -19,7 +19,7 @@ import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js'
 export async function getDevRspackConfig(
   cosmosConfig: CosmosConfig,
   userRspack: typeof rspack
-): Promise<rspack.Configuration> {
+): Promise<Configuration> {
   const baseRspackConfig = await getUserRspackConfig(cosmosConfig);
 
   const rspackConfig = {
@@ -78,7 +78,7 @@ function getOutput({ publicUrl }: CosmosConfig) {
 
 function getPlugins(
   cosmosConfig: CosmosConfig,
-  baseRspackConfig: rspack.Configuration,
+  baseRspackConfig: Configuration,
   userRspack: typeof rspack
 ) {
   const existingPlugins = ignoreEmptyRspackPlugins(baseRspackConfig.plugins);
@@ -101,6 +101,6 @@ function getHotMiddlewareEntry(reloadOnFail: boolean) {
   return `${clientPath}?reload=${reloadOnFail}&overlay=false`;
 }
 
-function getExperiments(baseWebpackConfig: rspack.Configuration) {
+function getExperiments(baseWebpackConfig: Configuration) {
   return ensureRspackConfigTopLevelAwait(baseWebpackConfig);
 }

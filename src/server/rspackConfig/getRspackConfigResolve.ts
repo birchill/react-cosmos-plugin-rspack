@@ -1,19 +1,20 @@
-import path from 'path';
-import { CosmosConfig } from 'react-cosmos';
-import rspack from '@rspack/core';
+import * as path from 'node:path';
+import type { CosmosConfig } from 'react-cosmos';
+import type { Configuration, ResolveOptions } from '@rspack/core';
+
 import { resolveFromSilent } from '../utils/resolveSilent.js';
 
 export function getRspackConfigResolve(
   cosmosConfig: CosmosConfig,
-  rspackConfig: rspack.Configuration
-): rspack.ResolveOptions {
+  rspackConfig: Configuration
+): ResolveOptions {
   return resolveLocalReactDeps(cosmosConfig, rspackConfig.resolve);
 }
 
 function resolveLocalReactDeps(
   cosmosConfig: CosmosConfig,
-  resolve: rspack.ResolveOptions = {}
-): rspack.ResolveOptions {
+  resolve: ResolveOptions = {}
+): ResolveOptions {
   const { rootDir } = cosmosConfig;
 
   let alias = resolve.alias || {};
@@ -48,7 +49,7 @@ function resolveLocalReactDeps(
   return { ...resolve, alias };
 }
 
-function hasAlias(alias: rspack.ResolveOptions['alias'], name: string) {
+function hasAlias(alias: ResolveOptions['alias'], name: string) {
   if (!alias) return false;
 
   const exactName = `${name}$`;
@@ -57,7 +58,7 @@ function hasAlias(alias: rspack.ResolveOptions['alias'], name: string) {
 }
 
 function addAlias(
-  alias: rspack.ResolveOptions['alias'],
+  alias: ResolveOptions['alias'],
   name: string,
   value: string | false | string[]
 ) {

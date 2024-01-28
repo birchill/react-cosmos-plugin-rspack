@@ -1,14 +1,14 @@
-import rspack from '@rspack/core';
+import type { Configuration } from '@rspack/core';
 import * as path from 'node:path';
-import { DevServerPluginArgs, serveStaticDir } from 'react-cosmos';
-import { ServerMessage } from 'react-cosmos-core';
+import { type DevServerPluginArgs, serveStaticDir } from 'react-cosmos';
+import type { ServerMessage } from 'react-cosmos-core';
 // import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import { createRspackCosmosConfig } from './cosmosConfig/createRspackCosmosConfig.js';
 import { getRspack } from './getRspack.js';
 import { getDevRspackConfig } from './rspackConfig/getDevRspackConfig.js';
 
-type RspackConfig = rspack.Configuration & {
+type RspackConfig = Configuration & {
   devServer: {
     contentBase: string;
   };
@@ -50,7 +50,6 @@ export async function rspackDevServerPlugin({
     sendMessage(msg);
   }
 
-  // XXX Up to here
   const rspackCompiler = userRspack(rspackConfig);
   rspackCompiler.hooks.invalid.tap('Cosmos', (filePath) => {
     if (typeof filePath === 'string') {
@@ -77,6 +76,7 @@ export async function rspackDevServerPlugin({
 
   console.log('[Cosmos] Building rspack...');
 
+  // XXX Up to here
   // Why import WDM here instead of at module level? Because it imports webpack,
   // which might not be installed in the user's codebase. If this were to happen
   // the Cosmos server would crash with a cryptic import error. See import here:
