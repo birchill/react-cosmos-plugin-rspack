@@ -61,6 +61,6 @@ async function getBaseRspackConfig(cosmosConfig: CosmosConfig) {
       // but that doesn't seem to be what webpack does:
       //
       // https://github.com/webpack/webpack-cli/blob/79a969fb02c870667d8a3b7035405566d2b4d088/packages/webpack-cli/src/webpack-cli.ts#L1903C35-L1903C43
-      await rspackConfig(cliArgs.env, cliArgs)
+      await rspackConfig(cliArgs.env || {}, cliArgs)
     : rspackConfig;
 }
