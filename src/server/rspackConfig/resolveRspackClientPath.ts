@@ -5,5 +5,5 @@ import { createRequire } from 'node:module';
 
 export function resolveRspackClientPath(relPath: string) {
   const require = createRequire(import.meta.url);
-  return require.resolve(`../../client/${relPath}`);
+  return require.resolve(`../client/${relPath}`);
 }

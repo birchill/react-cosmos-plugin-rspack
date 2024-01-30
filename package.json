@@ -38,7 +38,7 @@
   },
   "scripts": {
     "prepublishOnly": "yarn build",
-    "build": "tsup",
+    "build": "tsup && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
     "release": "release-it"
   },
   "peerDependencies": {
