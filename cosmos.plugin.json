@@ -1,5 +1,4 @@
 {
   "name": "rspack",
-  "ui": "dist/ui/build.js",
   "server": "dist/server/rspackServerPlugin.js"
 }
