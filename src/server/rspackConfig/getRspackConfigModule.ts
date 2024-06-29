@@ -20,8 +20,10 @@ function getRules(cosmosConfig: CosmosConfig, { module }: Configuration) {
 
 function getUserImportsLoaderRule(cosmosConfig: CosmosConfig): RuleSetRule {
   return {
-    loader: resolveRspackLoaderPath(),
     include: resolveRspackClientPath('userImports'),
-    options: { cosmosConfig },
+    use: {
+      loader: resolveRspackLoaderPath(),
+      options: { cosmosConfig },
+    },
   };
 }
