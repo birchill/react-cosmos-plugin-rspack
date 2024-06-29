@@ -12,7 +12,7 @@ export default defineConfig({
     'client/errorOverlay/reactErrorOverlay':
       'src/client/errorOverlay/reactErrorOverlay.ts',
   },
-  external: ['react'],
+  external: ['react', './userImports.js'],
   format: 'esm',
   splitting: false,
   clean: true,
