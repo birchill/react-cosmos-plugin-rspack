@@ -12,7 +12,6 @@
   ],
   "type": "module",
   "dependencies": {
-    "react-plugin": "3.0.0-alpha.4",
     "webpack-dev-middleware": "7.2.1",
     "webpack-hot-middleware": "2.26.1"
   },
@@ -25,6 +24,7 @@
     "react-cosmos": "6.1.1",
     "react-cosmos-ui": "6.1.1",
     "react-error-overlay": "6.0.11",
+    "react-plugin": "3.0.0-alpha.4",
     "release-it": "17.4.0",
     "tsup": "8.1.0",
     "typescript": "5.5.2"
@@ -38,7 +38,7 @@
   },
   "scripts": {
     "prepublishOnly": "yarn build",
-    "build": "tsup && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
+    "build": "tsup && tsup --config tsup.ui.config.ts && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
     "release": "release-it"
   },
   "peerDependencies": {
