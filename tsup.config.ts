@@ -1,9 +1,6 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  define: {
-    'process.env.NODE_ENV': '"production"',
-  },
   entry: {
     'server/rspackServerPlugin': 'src/server/rspackServerPlugin.ts',
     'client/index': 'src/client/index.ts',
