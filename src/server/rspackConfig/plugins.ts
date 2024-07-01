@@ -37,7 +37,9 @@ export function isInstanceOfRspackPlugin(
 export function ignoreEmptyRspackPlugins(
   plugins: rspack.Configuration['plugins'] = []
 ) {
-  return plugins.filter(Boolean) as rspack.RspackPluginInstance[];
+  return plugins.filter(Boolean) as Array<
+    rspack.RspackPluginInstance | rspack.RspackPluginFunction
+  >;
 }
 
 function removeTrailingSlash(url: string) {
