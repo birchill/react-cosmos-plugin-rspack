@@ -5,8 +5,6 @@ Allows building / running React Cosmos using
 
 ## Installation
 
-TODO
-
 Install the package:
 
 ```
@@ -32,7 +30,6 @@ The easiest way to develop is using [`yalc`](https://github.com/wclr/yalc).
 Install it globally and then from this repo do:
 
 ```
-yarn build
 yalc publish
 ```
 
