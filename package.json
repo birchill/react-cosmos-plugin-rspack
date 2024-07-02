@@ -25,9 +25,9 @@
     "react-cosmos-ui": "6.1.1",
     "react-error-overlay": "6.0.9",
     "react-plugin": "3.0.0-alpha.4",
-    "release-it": "17.4.0",
+    "release-it": "17.4.1",
     "tsup": "8.1.0",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "prettier": {
     "singleQuote": true,
