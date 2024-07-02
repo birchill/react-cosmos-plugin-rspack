@@ -10,6 +10,9 @@
       "submit": true
     }
   },
+  "npm": {
+    "publishArgs": ["--provenance"]
+  },
   "plugins": {
     "@release-it/conventional-changelog": {
       "preset": "conventionalcommits",
