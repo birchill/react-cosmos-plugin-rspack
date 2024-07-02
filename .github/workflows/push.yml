@@ -25,3 +25,6 @@ jobs:
 
       - name: Verify build
         run: yarn build
+
+      - name: Knip
+        run: yarn knip
