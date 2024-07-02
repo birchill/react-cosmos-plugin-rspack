@@ -21,7 +21,10 @@
     "@types/node": "20.14.9",
     "@types/webpack-hot-middleware": "2.25.9",
     "html-webpack-plugin": "5.6.0",
+    "husky": "9.0.11",
     "knip": "5.23.3",
+    "lint-staged": "15.2.7",
+    "prettier": "3.3.2",
     "react-cosmos": "6.1.1",
     "react-cosmos-core": "6.1.1",
     "react-error-overlay": "6.0.9",
@@ -40,11 +43,17 @@
   "scripts": {
     "prepublishOnly": "pnpm build",
     "build": "tsup && tsup --config tsup.ui.config.ts && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
-    "release": "release-it"
+    "release": "release-it",
+    "prepare": "husky"
   },
   "peerDependencies": {
     "@rspack/core": "^0.5.0",
     "react-cosmos": "^6.0.0",
     "react-cosmos-dom": "^6.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,json,md}": [
+      "prettier --write"
+    ]
   }
 }
