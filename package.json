@@ -38,7 +38,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "pnpm build",
     "build": "tsup && tsup --config tsup.ui.config.ts && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
     "release": "release-it"
   },
