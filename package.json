@@ -47,7 +47,7 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "@rspack/core": "^0.5.0",
+    "@rspack/core": "^0.6.0",
     "react-cosmos": "^6.0.0",
     "react-cosmos-dom": "^6.0.0"
   },
