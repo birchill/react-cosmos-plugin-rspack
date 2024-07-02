@@ -9,7 +9,7 @@ import { RENDERER_FILENAME } from './constants.js';
 import { hasPlugin, isInstanceOfRspackPlugin } from './plugins.js';
 
 // prettier-ignore
-export type HtmlWebpackPlugin = RspackPluginInstance & {
+type HtmlWebpackPlugin = RspackPluginInstance & {
   constructor: HtmlWebpackPluginConstructor;
 } & (
   | { options: HtmlWebpackPluginOptions; userOptions: undefined } // html-webpack-plugin < 5
