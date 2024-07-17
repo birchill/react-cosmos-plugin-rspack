@@ -12,6 +12,7 @@
   ],
   "type": "module",
   "dependencies": {
+    "react-cosmos-dom": ">=6.0.0",
     "webpack-dev-middleware": "7.2.1",
     "webpack-hot-middleware": "2.26.1"
   },
@@ -47,9 +48,8 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "@rspack/core": "^0.6.0",
-    "react-cosmos": "^6.0.0",
-    "react-cosmos-dom": "^6.0.0"
+    "@rspack/core": ">=0.6.0",
+    "react-cosmos": ">=6.0.0"
   },
   "lint-staged": {
     "*.{ts,json,md}": [

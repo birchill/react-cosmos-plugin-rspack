@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       react-cosmos-dom:
-        specifier: ^6.0.0
+        specifier: '>=6.0.0'
         version: 6.1.1
       webpack-dev-middleware:
         specifier: 7.2.1
