@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.1.0...v0.2.0) (2024-08-13)
+
+### Features
+
+- use builtin lightningcss loader for CSS when postcss-loader is not available ([f6c86a9](https://github.com/birchill/react-cosmos-plugin-rspack/commit/f6c86a9145ccd02a91db65e1fddef93b4b068d5a))
+
 ## 0.1.0 (2024-07-17)
 
 ### Bug Fixes
