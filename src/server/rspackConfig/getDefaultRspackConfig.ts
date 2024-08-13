@@ -50,10 +50,11 @@ export function getDefaultRspackConfig(rootDir: string): Configuration {
 
   // Style loading
   rules.push({
-    test: /\.css?$/,
-    exclude: [/[\\/]node_modules[\\/]/],
-    use: postcssLoaderPath ? [{ loader: postcssLoaderPath }] : undefined,
-    type: 'css',
+    test: /\.css$/,
+    use: postcssLoaderPath
+      ? [{ loader: postcssLoaderPath }]
+      : [{ loader: 'builtin:lightningcss-loader' }],
+    type: 'css/auto',
   });
 
   if (mdxLoaderPath) {
