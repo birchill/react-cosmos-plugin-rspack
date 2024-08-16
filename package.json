@@ -1,6 +1,6 @@
 {
   "name": "react-cosmos-plugin-rspack",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "rspack plugin for React Cosmos",
   "repository": "https://github.com/birchill/react-cosmos-plugin-rspack/",
   "author": "Birchill, Inc.",
