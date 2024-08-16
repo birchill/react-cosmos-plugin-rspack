@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.2](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.3.1...v0.3.2) (2024-08-16)
+
+### Bug Fixes
+
+- try again to import HtmlRspackPlugin correctly ([c7d8508](https://github.com/birchill/react-cosmos-plugin-rspack/commit/c7d850844da805f2e81eb5a614d334e51d10029c))
+
 ## [0.3.1](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.3.0...v0.3.1) (2024-08-16)
 
 ### Bug Fixes
