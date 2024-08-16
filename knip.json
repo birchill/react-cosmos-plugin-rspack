@@ -1,5 +1,4 @@
 {
-  "entry": ["src/ui/WebpackRendererError.tsx"],
-  "ignore": ["tsup.ui.config.ts"],
+  "entry": ["src/ui/WebpackRendererError.tsx", "tsup.ui.config.ts"],
   "ignoreDependencies": ["react", "webpack"]
 }
