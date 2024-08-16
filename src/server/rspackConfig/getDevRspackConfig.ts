@@ -7,7 +7,7 @@ import { resolve } from '../utils/resolve.js';
 import { getUserRspackConfig } from './getUserRspackConfig.js';
 import { getRspackConfigModule } from './getRspackConfigModule.js';
 import { getRspackConfigResolve } from './getRspackConfigResolve.js';
-import { ensureHtmlWebpackPlugin } from './htmlPlugin.js';
+import { ensureHtmlPlugin } from './htmlPlugin.js';
 import {
   getGlobalsPlugin,
   hasPlugin,
@@ -93,7 +93,7 @@ function getPlugins(
     plugins = [...plugins, hmrPlugin];
   }
 
-  return ensureHtmlWebpackPlugin(plugins);
+  return ensureHtmlPlugin(plugins);
 }
 
 function getHotMiddlewareEntry(reloadOnFail: boolean) {

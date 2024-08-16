@@ -21,7 +21,7 @@ type HtmlWebpackPluginConstructor = new (
   options?: HtmlRspackPluginOptions
 ) => HtmlWebpackPlugin;
 
-export function ensureHtmlWebpackPlugin(
+export function ensureHtmlPlugin(
   plugins: RspackPluginInstance[]
 ): RspackPluginInstance[] {
   if (hasPlugin(plugins, 'HtmlWebpackPlugin')) {
@@ -31,7 +31,7 @@ export function ensureHtmlWebpackPlugin(
   }
 
   return [
-    ...plugins,
+    ...plugins.filter((plugin) => !isHtmlRspackPlugin(plugin)),
     new HtmlRspackPlugin({
       title: 'React Cosmos',
       filename: RENDERER_FILENAME,
@@ -43,6 +43,10 @@ function isHtmlWebpackPlugin(
   plugin: RspackPluginInstance
 ): plugin is HtmlWebpackPlugin {
   return isInstanceOfRspackPlugin(plugin, 'HtmlWebpackPlugin');
+}
+
+function isHtmlRspackPlugin(plugin: RspackPluginInstance): boolean {
+  return isInstanceOfRspackPlugin(plugin, 'HtmlRspackPlugin');
 }
 
 function changeHtmlPluginFilename(htmlPlugin: HtmlWebpackPlugin) {

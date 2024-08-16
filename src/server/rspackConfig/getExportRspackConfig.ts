@@ -6,7 +6,7 @@ import { createRspackCosmosConfig } from '../cosmosConfig/createRspackCosmosConf
 import { getUserRspackConfig } from './getUserRspackConfig.js';
 import { getRspackConfigModule } from './getRspackConfigModule.js';
 import { getRspackConfigResolve } from './getRspackConfigResolve.js';
-import { ensureHtmlWebpackPlugin } from './htmlPlugin.js';
+import { ensureHtmlPlugin } from './htmlPlugin.js';
 import { getGlobalsPlugin, ignoreEmptyRspackPlugins } from './plugins.js';
 import { resolveRspackClientPath } from './resolveRspackClientPath.js';
 import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js';
@@ -59,7 +59,7 @@ function getPlugins(
   // react-cosmos-plugin-webpack configures the NoEmitOnErrorsPlugin, but rspack
   // doesn't appear to support that.
 
-  return ensureHtmlWebpackPlugin([...existingPlugins, globalsPlugin]);
+  return ensureHtmlPlugin([...existingPlugins, globalsPlugin]);
 }
 
 function getExperiments(baseWebpackConfig: Configuration) {
