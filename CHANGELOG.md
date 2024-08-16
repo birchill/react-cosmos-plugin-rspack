@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.2.0...v0.3.0) (2024-08-16)
+
+### Features
+
+- use built-in HtmlRspackPlugin when HtmlWebpackPlugin is not available ([4c4702b](https://github.com/birchill/react-cosmos-plugin-rspack/commit/4c4702be517ad16556543e460f19405c9a0d7ce6))
+
 ## [0.2.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.1.0...v0.2.0) (2024-08-13)
 
 ### Features
