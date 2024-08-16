@@ -52,8 +52,8 @@ importers:
         specifier: 6.1.1
         version: 6.1.1
       react-error-overlay:
-        specifier: 6.0.11
-        version: 6.0.11
+        specifier: 6.0.9
+        version: 6.0.9
       react-plugin:
         specifier: 3.0.0-alpha.4
         version: 3.0.0-alpha.4
@@ -2301,8 +2301,8 @@ packages:
     resolution: {integrity: sha512-C40I3npZOLMJMOV73BVcp1L9/eG/h1zB4+7ihMQE62img3qFy3CDEwBUwwp/YmIMRF1LXrIvhGU0TA7kig/YSw==}
     hasBin: true
 
-  react-error-overlay@6.0.11:
-    resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
+  react-error-overlay@6.0.9:
+    resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
 
   react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
@@ -5155,7 +5155,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  react-error-overlay@6.0.11: {}
+  react-error-overlay@6.0.9: {}
 
   react-is@18.2.0: {}
 
