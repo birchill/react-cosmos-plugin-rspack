@@ -30,8 +30,24 @@ export function ensureHtmlPlugin(
     );
   }
 
+  // HtmlRspackPlugin doesn't appear to let it override its configuration in the
+  // same way as HtmlWebpackPlugin, so if it is being used, we need to exract
+  // its configuration and recreate it.
+  const htmlRspackPlugin = plugins.find(isHtmlRspackPlugin);
+  if (htmlRspackPlugin) {
+    const options = htmlRspackPlugin._args[0];
+    const safeOptions = omit(options, ['chunks']);
+    return [
+      ...plugins.filter((plugin) => plugin !== htmlRspackPlugin),
+      new rspack.HtmlRspackPlugin({
+        ...safeOptions,
+        filename: RENDERER_FILENAME,
+      }),
+    ];
+  }
+
   return [
-    ...plugins.filter((plugin) => !isHtmlRspackPlugin(plugin)),
+    ...plugins,
     new rspack.HtmlRspackPlugin({
       title: 'React Cosmos',
       filename: RENDERER_FILENAME,
