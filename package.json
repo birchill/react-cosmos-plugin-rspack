@@ -13,7 +13,7 @@
   "type": "module",
   "dependencies": {
     "react-cosmos-dom": ">=6.0.0",
-    "webpack-dev-middleware": "7.2.1",
+    "webpack-dev-middleware": "7.3.0",
     "webpack-hot-middleware": "2.26.1"
   },
   "devDependencies": {
@@ -21,17 +21,18 @@
     "@rspack/core": "1.0.0-beta.5",
     "@types/node": "20.14.9",
     "@types/webpack-hot-middleware": "2.25.9",
-    "husky": "9.0.11",
-    "knip": "5.23.3",
-    "lint-staged": "15.2.7",
-    "prettier": "3.3.2",
+    "esbuild": "0.23.0",
+    "husky": "9.1.4",
+    "knip": "5.27.2",
+    "lint-staged": "15.2.9",
+    "prettier": "3.3.3",
     "react-cosmos": "6.1.1",
     "react-cosmos-core": "6.1.1",
-    "react-error-overlay": "6.0.9",
+    "react-error-overlay": "6.0.11",
     "react-plugin": "3.0.0-alpha.4",
-    "release-it": "17.4.1",
-    "tsup": "8.1.0",
-    "typescript": "5.5.3"
+    "release-it": "17.6.0",
+    "tsup": "8.2.4",
+    "typescript": "5.5.4"
   },
   "prettier": {
     "singleQuote": true,
