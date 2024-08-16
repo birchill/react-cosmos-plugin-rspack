@@ -1,13 +1,13 @@
-import type {
-  Configuration,
-  RuleSetRule,
-  RspackPluginInstance,
+import {
+  type Configuration,
+  HtmlRspackPlugin,
+  type RuleSetRule,
+  type RspackPluginInstance,
 } from '@rspack/core';
 
 import { resolveFromSilent } from '../utils/resolveSilent.js';
 import { RENDERER_FILENAME } from './constants.js';
 import { getRspackNodeEnv } from './getRspackNodeEnv.js';
-import { getHtmlWebpackPlugin } from './htmlPlugin.js';
 
 // This config doesn't have entry and output set up because it's not meant to
 // work standalone. An entry & output will be added to this base config.
@@ -65,15 +65,9 @@ export function getDefaultRspackConfig(rootDir: string): Configuration {
     });
   }
 
-  const htmlWebpackPlugin = getHtmlWebpackPlugin(rootDir);
-  if (htmlWebpackPlugin) {
-    plugins.push(
-      new htmlWebpackPlugin({
-        title: 'React Cosmos',
-        filename: RENDERER_FILENAME,
-      })
-    );
-  }
+  plugins.push(
+    new HtmlRspackPlugin({ title: 'React Cosmos', filename: RENDERER_FILENAME })
+  );
 
   const config: Configuration = {
     // Besides other advantages, cheap-module-source-map is compatible with

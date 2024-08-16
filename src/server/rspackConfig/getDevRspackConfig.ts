@@ -93,7 +93,7 @@ function getPlugins(
     plugins = [...plugins, hmrPlugin];
   }
 
-  return ensureHtmlWebpackPlugin(cosmosConfig, plugins);
+  return ensureHtmlWebpackPlugin(plugins);
 }
 
 function getHotMiddlewareEntry(reloadOnFail: boolean) {

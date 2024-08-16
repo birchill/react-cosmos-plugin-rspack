@@ -1,9 +1,10 @@
-import type { RspackPluginInstance } from '@rspack/core';
-import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
-import type { CosmosConfig } from 'react-cosmos';
+import {
+  HtmlRspackPlugin,
+  type HtmlRspackPluginOptions,
+  type RspackPluginInstance,
+} from '@rspack/core';
 
 import { omit } from '../utils/omit.js';
-import { requireFromSilent } from '../utils/requireSilent.js';
 
 import { RENDERER_FILENAME } from './constants.js';
 import { hasPlugin, isInstanceOfRspackPlugin } from './plugins.js';
@@ -12,16 +13,15 @@ import { hasPlugin, isInstanceOfRspackPlugin } from './plugins.js';
 type HtmlWebpackPlugin = RspackPluginInstance & {
   constructor: HtmlWebpackPluginConstructor;
 } & (
-  | { options: HtmlWebpackPluginOptions; userOptions: undefined } // html-webpack-plugin < 5
-  | { userOptions: HtmlWebpackPluginOptions; options: undefined } // html-webpack-plugin >= 5
+  | { options: HtmlRspackPluginOptions; userOptions: undefined } // html-webpack-plugin < 5
+  | { userOptions: HtmlRspackPluginOptions; options: undefined } // html-webpack-plugin >= 5
   );
 
 type HtmlWebpackPluginConstructor = new (
-  options?: HtmlWebpackPluginOptions
+  options?: HtmlRspackPluginOptions
 ) => HtmlWebpackPlugin;
 
 export function ensureHtmlWebpackPlugin(
-  { rootDir }: CosmosConfig,
   plugins: RspackPluginInstance[]
 ): RspackPluginInstance[] {
   if (hasPlugin(plugins, 'HtmlWebpackPlugin')) {
@@ -30,25 +30,13 @@ export function ensureHtmlWebpackPlugin(
     );
   }
 
-  const htmlWebpackPlugin = getHtmlWebpackPlugin(rootDir);
-  if (!htmlWebpackPlugin) {
-    return plugins;
-  }
-
   return [
     ...plugins,
-    new htmlWebpackPlugin({
+    new HtmlRspackPlugin({
       title: 'React Cosmos',
       filename: RENDERER_FILENAME,
     }),
   ];
-}
-
-export function getHtmlWebpackPlugin(rootDir: string) {
-  return requireFromSilent(
-    rootDir,
-    'html-webpack-plugin'
-  ) as HtmlWebpackPluginConstructor;
 }
 
 function isHtmlWebpackPlugin(
