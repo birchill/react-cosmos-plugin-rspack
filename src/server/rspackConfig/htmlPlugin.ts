@@ -1,8 +1,8 @@
-import {
-  HtmlRspackPlugin,
-  type HtmlRspackPluginOptions,
-  type RspackPluginInstance,
+import type {
+  HtmlRspackPluginOptions,
+  RspackPluginInstance,
 } from '@rspack/core';
+import rspack from '@rspack/core';
 
 import { omit } from '../utils/omit.js';
 
@@ -32,7 +32,7 @@ export function ensureHtmlPlugin(
 
   return [
     ...plugins.filter((plugin) => !isHtmlRspackPlugin(plugin)),
-    new HtmlRspackPlugin({
+    new rspack.HtmlRspackPlugin({
       title: 'React Cosmos',
       filename: RENDERER_FILENAME,
     }),

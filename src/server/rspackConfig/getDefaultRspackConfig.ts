@@ -1,9 +1,9 @@
-import {
-  type Configuration,
-  HtmlRspackPlugin,
-  type RuleSetRule,
-  type RspackPluginInstance,
+import type {
+  Configuration,
+  RuleSetRule,
+  RspackPluginInstance,
 } from '@rspack/core';
+import rspack from '@rspack/core';
 
 import { resolveFromSilent } from '../utils/resolveSilent.js';
 import { RENDERER_FILENAME } from './constants.js';
@@ -66,7 +66,10 @@ export function getDefaultRspackConfig(rootDir: string): Configuration {
   }
 
   plugins.push(
-    new HtmlRspackPlugin({ title: 'React Cosmos', filename: RENDERER_FILENAME })
+    new rspack.HtmlRspackPlugin({
+      title: 'React Cosmos',
+      filename: RENDERER_FILENAME,
+    })
   );
 
   const config: Configuration = {
