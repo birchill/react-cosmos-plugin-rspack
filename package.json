@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "8.0.1",
-    "@rspack/core": "1.0.0-beta.5",
+    "@rspack/core": "1.0.0-rc.0",
     "@types/node": "20.14.9",
     "@types/webpack-hot-middleware": "2.25.9",
     "esbuild": "0.23.0",
