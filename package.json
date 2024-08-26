@@ -13,7 +13,7 @@
   "type": "module",
   "dependencies": {
     "react-cosmos-dom": ">=6.0.0",
-    "webpack-dev-middleware": "7.3.0",
+    "webpack-dev-middleware": "7.4.2",
     "webpack-hot-middleware": "2.26.1"
   },
   "devDependencies": {
@@ -21,9 +21,9 @@
     "@rspack/core": "1.0.0-rc.0",
     "@types/node": "20.14.9",
     "@types/webpack-hot-middleware": "2.25.9",
-    "esbuild": "0.23.0",
-    "husky": "9.1.4",
-    "knip": "5.27.2",
+    "esbuild": "0.23.1",
+    "husky": "9.1.5",
+    "knip": "5.27.4",
     "lint-staged": "15.2.9",
     "prettier": "3.3.3",
     "react-cosmos": "6.1.1",
