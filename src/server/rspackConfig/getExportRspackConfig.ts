@@ -56,10 +56,13 @@ function getPlugins(
 ) {
   const existingPlugins = ignoreEmptyRspackPlugins(baseRspackConfig.plugins);
   const globalsPlugin = getGlobalsPlugin(cosmosConfig, userRspack, false);
-  // react-cosmos-plugin-webpack configures the NoEmitOnErrorsPlugin, but rspack
-  // doesn't appear to support that.
+  const noEmitErrorsPlugin = new userRspack.NoEmitOnErrorsPlugin();
 
-  return ensureHtmlPlugin([...existingPlugins, globalsPlugin]);
+  return ensureHtmlPlugin([
+    ...existingPlugins,
+    globalsPlugin,
+    noEmitErrorsPlugin,
+  ]);
 }
 
 function getExperiments(baseWebpackConfig: Configuration) {

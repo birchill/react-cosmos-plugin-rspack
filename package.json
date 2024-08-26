@@ -48,7 +48,7 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "@rspack/core": ">=1.0.0-beta.0",
+    "@rspack/core": ">=1.0.0-rc.0",
     "react-cosmos": ">=6.0.0"
   },
   "lint-staged": {
