@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.3.3...v0.4.0) (2024-08-26)
+
+### Features
+
+- configure NoEmitOnErrorsPlugin ([b57e56a](https://github.com/birchill/react-cosmos-plugin-rspack/commit/b57e56af0e8effbd3f80286c63c0a621563651c0))
+
 ## [0.3.3](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.3.2...v0.3.3) (2024-08-16)
 
 ### Bug Fixes
