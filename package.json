@@ -12,7 +12,7 @@
   ],
   "type": "module",
   "dependencies": {
-    "react-cosmos-dom": ">=6.0.0",
+    "react-cosmos-dom": ">=6.2.0",
     "webpack-dev-middleware": "7.4.2",
     "webpack-hot-middleware": "2.26.1"
   },
@@ -26,8 +26,8 @@
     "knip": "5.27.4",
     "lint-staged": "15.2.9",
     "prettier": "3.3.3",
-    "react-cosmos": "6.1.1",
-    "react-cosmos-core": "6.1.1",
+    "react-cosmos": "6.2.0",
+    "react-cosmos-core": "6.2.0",
     "react-error-overlay": "6.0.9",
     "react-plugin": "3.0.0-alpha.4",
     "release-it": "17.6.0",
