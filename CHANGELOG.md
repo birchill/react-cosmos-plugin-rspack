@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.4.0...v0.5.0) (2024-08-27)
+
+### Features
+
+- update to React Cosmos 6.2.0 ([e0d3ad3](https://github.com/birchill/react-cosmos-plugin-rspack/commit/e0d3ad3fb6f556ef2db2494baacbd70419d4a352))
+
 ## [0.4.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v0.3.3...v0.4.0) (2024-08-26)
 
 ### Features
