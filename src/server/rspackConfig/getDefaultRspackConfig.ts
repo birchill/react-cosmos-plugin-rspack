@@ -26,7 +26,7 @@ export function getDefaultRspackConfig(rootDir: string): Configuration {
     exclude: [/[\\/]node_modules[\\/]/],
     loader: 'builtin:swc-loader',
     options: {
-      sourceMap: true,
+      sourceMaps: true,
       jsc: { parser: { syntax: 'typescript' } },
     },
     type: 'javascript/auto',
@@ -36,7 +36,7 @@ export function getDefaultRspackConfig(rootDir: string): Configuration {
     loader: 'builtin:swc-loader',
     exclude: [/[\\/]node_modules[\\/]/],
     options: {
-      sourceMap: true,
+      sourceMaps: true,
       jsc: {
         parser: {
           syntax: 'typescript',
