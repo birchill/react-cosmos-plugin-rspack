@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v1.0.2...v1.0.3) (2025-06-09)
+
+### Bug Fixes
+
+- downgrade broken react-error-overlay to 6.0.9 ([e621736](https://github.com/birchill/react-cosmos-plugin-rspack/commit/e621736f077b732a2e7bbd0329d107a9b64b589a))
+
 ## [1.0.2](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v1.0.1...v1.0.2) (2025-04-28)
 
 ## [1.0.1](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v1.0.0...v1.0.1) (2025-04-28)
