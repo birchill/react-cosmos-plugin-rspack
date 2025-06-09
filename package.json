@@ -28,7 +28,7 @@
     "prettier": "3.5.3",
     "react-cosmos": "6.2.3",
     "react-cosmos-core": "6.2.0",
-    "react-error-overlay": "6.1.0",
+    "react-error-overlay": "6.0.9",
     "react-plugin": "3.0.0-alpha.4",
     "release-it": "19.0.3",
     "tsup": "8.5.0",
