@@ -19,9 +19,9 @@ type RspackConfig =
 
 type RspackOverride = (baseConfig: Configuration, env: string) => Configuration;
 
-export async function getUserRspackConfig(cosmosConfig: CosmosConfig) {
-  const baseRspackConfig = await getBaseRspackConfig(cosmosConfig);
-  const { overridePath } = createRspackCosmosConfig(cosmosConfig);
+export async function getUserRspackConfig(config: CosmosConfig) {
+  const baseRspackConfig = await getBaseRspackConfig(config);
+  const { overridePath } = createRspackCosmosConfig(config);
 
   if (!overridePath || !moduleExists(overridePath)) {
     console.log(
@@ -39,9 +39,9 @@ export async function getUserRspackConfig(cosmosConfig: CosmosConfig) {
   return rspackOverride(baseRspackConfig, getRspackNodeEnv());
 }
 
-async function getBaseRspackConfig(cosmosConfig: CosmosConfig) {
-  const { rootDir } = cosmosConfig;
-  const { configPath } = createRspackCosmosConfig(cosmosConfig);
+async function getBaseRspackConfig(confg: CosmosConfig) {
+  const { rootDir } = confg;
+  const { configPath } = createRspackCosmosConfig(confg);
 
   if (!configPath || !moduleExists(configPath)) {
     console.log('[Cosmos] Using default rspack config');

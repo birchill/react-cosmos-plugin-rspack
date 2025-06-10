@@ -17,18 +17,18 @@ import { resolveRspackClientPath } from './resolveRspackClientPath.js';
 import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js';
 
 export async function getDevRspackConfig(
-  cosmosConfig: CosmosConfig,
+  config: CosmosConfig,
   userRspack: typeof rspack
 ): Promise<Configuration> {
-  const baseRspackConfig = await getUserRspackConfig(cosmosConfig);
+  const baseRspackConfig = await getUserRspackConfig(config);
 
   const rspackConfig = {
     ...baseRspackConfig,
-    entry: getEntry(cosmosConfig),
-    output: getOutput(cosmosConfig),
-    module: getRspackConfigModule(cosmosConfig, baseRspackConfig),
-    resolve: getRspackConfigResolve(cosmosConfig, baseRspackConfig),
-    plugins: getPlugins(cosmosConfig, baseRspackConfig, userRspack),
+    entry: getEntry(config),
+    output: getOutput(config),
+    module: getRspackConfigModule(config, baseRspackConfig, 'dev'),
+    resolve: getRspackConfigResolve(config, baseRspackConfig),
+    plugins: getPlugins(config, baseRspackConfig, userRspack),
     experiments: getExperiments(baseRspackConfig),
   };
 
@@ -53,8 +53,8 @@ export async function getDevRspackConfig(
   return rspackConfig;
 }
 
-function getEntry(cosmosConfig: CosmosConfig) {
-  const { hotReload, reloadOnFail } = createRspackCosmosConfig(cosmosConfig);
+function getEntry(config: CosmosConfig) {
+  const { hotReload, reloadOnFail } = createRspackCosmosConfig(config);
   // The React devtools hook needs to be imported before any other module that
   // might import React
   const devtoolsHook = resolveRspackClientPath('reactDevtoolsHook');
@@ -77,16 +77,16 @@ function getOutput({ publicUrl }: CosmosConfig) {
 }
 
 function getPlugins(
-  cosmosConfig: CosmosConfig,
+  config: CosmosConfig,
   baseRspackConfig: Configuration,
   userRspack: typeof rspack
 ) {
   const existingPlugins = ignoreEmptyRspackPlugins(baseRspackConfig.plugins);
-  const globalsPlugin = getGlobalsPlugin(cosmosConfig, userRspack, true);
+  const globalsPlugin = getGlobalsPlugin(config, userRspack, true);
   const noEmitErrorsPlugin = new userRspack.NoEmitOnErrorsPlugin();
   let plugins = [...existingPlugins, globalsPlugin, noEmitErrorsPlugin];
 
-  const { hotReload } = createRspackCosmosConfig(cosmosConfig);
+  const { hotReload } = createRspackCosmosConfig(config);
   if (hotReload && !hasPlugin(plugins, 'HotModuleReplacementPlugin')) {
     const hmrPlugin = new userRspack.HotModuleReplacementPlugin();
     plugins = [...plugins, hmrPlugin];

@@ -15,33 +15,33 @@ type RspackConfig = Configuration & {
 };
 
 export async function rspackDevServerPlugin({
-  cosmosConfig,
+  config,
   platform,
-  expressApp,
+  app,
   sendMessage,
 }: DevServerPluginArgs) {
   if (platform !== 'web') {
     return;
   }
 
-  const userRspack = getRspack(cosmosConfig.rootDir);
+  const userRspack = getRspack(config.rootDir);
   if (!userRspack) {
     return;
   }
 
   const rspackConfig = (await getDevRspackConfig(
-    cosmosConfig,
+    config,
     userRspack
   )) as RspackConfig;
 
   // Serve static path derived from devServer.contentBase rspack config
-  if (cosmosConfig.staticPath === null) {
+  if (config.staticPath === null) {
     const rspackDerivedStaticPath = getRspackStaticPath(rspackConfig);
     if (rspackDerivedStaticPath !== null) {
       serveStaticDir(
-        expressApp,
-        path.resolve(cosmosConfig.rootDir, rspackDerivedStaticPath),
-        cosmosConfig.publicUrl
+        app,
+        path.resolve(config.rootDir, rspackDerivedStaticPath),
+        config.publicUrl
       );
     }
   }
@@ -92,15 +92,15 @@ export async function rspackDevServerPlugin({
     {
       // publicPath is the base path for the rspack assets and has to match
       // rspack.output.publicPath
-      publicPath: cosmosConfig.publicUrl,
+      publicPath: config.publicUrl,
     }
   );
 
-  expressApp.use(wdmInst);
+  app.use(wdmInst);
 
-  const { hotReload } = createRspackCosmosConfig(cosmosConfig);
+  const { hotReload } = createRspackCosmosConfig(config);
   if (hotReload) {
-    expressApp.use(
+    app.use(
       webpackHotMiddleware(
         // As above, rspack's Compiler type is pretty close to webpack's
         // Compiler type so this should be fine.

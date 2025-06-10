@@ -4,14 +4,14 @@ import { CosmosConfig, CosmosConfigPluginArgs } from 'react-cosmos';
 import { RENDERER_FILENAME } from './rspackConfig/constants.js';
 
 export async function rspackConfigPlugin({
-  cosmosConfig,
+  config,
 }: CosmosConfigPluginArgs): Promise<CosmosConfig> {
-  if (cosmosConfig.rendererUrl) {
-    return cosmosConfig;
+  if (config.rendererUrl) {
+    return config;
   }
 
   return {
-    ...cosmosConfig,
-    rendererUrl: path.join(cosmosConfig.publicUrl, RENDERER_FILENAME),
+    ...config,
+    rendererUrl: path.join(config.publicUrl, RENDERER_FILENAME),
   };
 }
