@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       react-cosmos-dom:
-        specifier: '>=6.2.0'
-        version: 6.2.0
+        specifier: '>=7.0.0'
+        version: 7.0.0
       webpack-dev-middleware:
         specifier: 7.4.2
         version: 7.4.2(webpack@5.92.1(esbuild@0.25.5))
@@ -46,11 +46,11 @@ importers:
         specifier: 3.5.3
         version: 3.5.3
       react-cosmos:
-        specifier: 6.2.3
-        version: 6.2.3
+        specifier: 7.0.0
+        version: 7.0.0
       react-cosmos-core:
-        specifier: 6.2.0
-        version: 6.2.0
+        specifier: 7.0.0
+        version: 7.0.0
       react-error-overlay:
         specifier: 6.0.9
         version: 6.0.9
@@ -1594,8 +1594,8 @@ packages:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
 
-  http-proxy-middleware@2.0.7:
-    resolution: {integrity: sha512-fgVY8AV7qU7z/MmXJ/rxwbrtQH4jBQ9m7kp3llF0liB7glmFeVZFBepQb32T3y8n8k2+AEYuMPCpinYW+/CuRA==}
+  http-proxy-middleware@2.0.9:
+    resolution: {integrity: sha512-c1IyJYLYppU574+YI7R4QyX2ystMtVXZwIdzazUIPIJsHuWNd+mho2j+bKoHftndicGj9yh+xjd+l0yj7VeT1Q==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@types/express': ^4.17.13
@@ -2012,8 +2012,8 @@ packages:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
     engines: {node: '>=18'}
 
-  open@10.1.0:
-    resolution: {integrity: sha512-mnkeQ1qP5Ue2wd+aivTD3NHd/lZ96Lu0jgf0pwktLPtx6cTZiH7tyeGRRHs0zX0rbrahXPnXlUnbeXyaBBuIaw==}
+  open@10.1.1:
+    resolution: {integrity: sha512-zy1wx4+P3PfhXSEPJNtZmJXfhkkIaxU1VauWIrDZw1O7uJRDRJtKr9n3Ic4NgbA16KyOxOXO2ng9gYwCdXuSXA==}
     engines: {node: '>=18'}
 
   open@10.1.2:
@@ -2079,10 +2079,9 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
-  pem@1.15.1:
-    resolution: {integrity: sha512-kNNaflLX8Cpb3mrDNxSy8qIwpsNFKgBZx9pgFhbj4h+Rid4j2SMYQxcjtIjyhJg8/lwJTL+A3NHdD0M+UwyrCw==}
+  pem@1.14.8:
+    resolution: {integrity: sha512-ZpbOf4dj9/fQg5tQzTqv4jSKJQsK7tPl0pm4/pvPcZVjZcJg7TMfr3PBk6gJH97lnpJDu4e4v8UUqEz5daipCg==}
     engines: {node: '>=14.0.0'}
-    deprecated: this package has been deprecated - published by mistake
 
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
@@ -2178,27 +2177,24 @@ packages:
   rc9@2.1.2:
     resolution: {integrity: sha512-btXCnMmRIBINM2LDZoEmOogIZU7Qe7zn4BpomSKZ/ykbLObuBdvG+mFq11DL6fjH1DRwHhrlgtYWG96bJiC7Cg==}
 
-  react-cosmos-core@6.2.0:
-    resolution: {integrity: sha512-BAkTG5cGStSd1K99FjYlVEE07P13UD+4bVFhqf4LGqpYVPiMkem/ICVoZK+EFEnftnk9OLk2PertaEE1fkOFsg==}
+  react-cosmos-core@7.0.0:
+    resolution: {integrity: sha512-BBGiNezUkxxGExWCJyKfzpwVJBExFcChuWi+xTUDSYQVpDaarOIuQ6zNGt0rAr1CBlCKvL4PqvB9r9Fgf7K4fg==}
 
-  react-cosmos-dom@6.2.0:
-    resolution: {integrity: sha512-la+//KrpDc8fzwP/R8ZA0+XbQhYeXUk0XXPt/30AEdqPMPV85WGkHosP2mX1FQ9DjOc2prttNu75bu7Gi9hklA==}
+  react-cosmos-dom@7.0.0:
+    resolution: {integrity: sha512-8PbCp8Uss3LQK0+HoUjVj0daww/axLS7b0GyTcLLZnLzxYaOXNugWJIr66dyBRFX330IgypCO8DW6auNmJPqvQ==}
 
-  react-cosmos-renderer@6.2.0:
-    resolution: {integrity: sha512-XWuZcyslVB32QwJ3ODuu/rV14fcbXOoFNhUUos+Ox4PNvZtu43HxfUK62S9OZiwdI++Hx+dxH4akdaDDkZ82AQ==}
+  react-cosmos-renderer@7.0.0:
+    resolution: {integrity: sha512-ELCZwUkX3gfcr8cjdaA45Ki2tZMIgkv69fUQkIpNIx2/sp2ewUT/cO6KVcenDMmZr89CYjiZDWT6wOIcL21aIw==}
 
-  react-cosmos-ui@6.2.3:
-    resolution: {integrity: sha512-V9BDVfP1W+5MTS/SDyRKl1OJPuOkDiMAAuFjasKKZEj5mYR0DdEryjg4bboSo+g/3VMxdWOCTJ7a6pVGzAx0uQ==}
+  react-cosmos-ui@7.0.0:
+    resolution: {integrity: sha512-aBqBoJNc2MPJuFRqrHNPLZ6CwFHtx9Jh9UJM1CzyxzHqp6OWwRWNZaP69dLgt0VsRFBvacR6Eot+ULfoym+v2A==}
 
-  react-cosmos@6.2.3:
-    resolution: {integrity: sha512-4dy0niyZW+6spwmlSzXqAQoH0kvWgc+RZsAFPlPxJlW5FCdEwnITrrJZ7XCQjBpmQLdes5Gpd4lkKFyxKeughQ==}
+  react-cosmos@7.0.0:
+    resolution: {integrity: sha512-qAd+tY5yCV6lRfhtJCKJn+PvP4fVIg2L5ANwXdj+pxSLZwNz2c/H3jH1Mmci1nE3o+nWxMOOBUaINiPF+9zV5Q==}
     hasBin: true
 
   react-error-overlay@6.0.9:
     resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
-
-  react-is@18.3.1:
-    resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
   react-plugin@3.0.0-alpha.4:
     resolution: {integrity: sha512-yxwgOCrlWWMPB7xElRokpJ8r3zHj/r0eUWrGOB6Rb+a/gOswjvjVF8CJg/rS0yqlLxvo4jeOek11iOnBvc+P/w==}
@@ -2702,8 +2698,8 @@ packages:
     resolution: {integrity: sha512-G8ura3S+3Z2G+mkgNRq8dqaFZAuxfsxpBB8OCTGRTCtp+l/v9nbFNmCUP1BZMts3G1142MsZfn6eeUKrr4PD1Q==}
     engines: {node: '>=18'}
 
-  ws@8.18.0:
-    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+  ws@8.18.1:
+    resolution: {integrity: sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -4207,7 +4203,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  http-proxy-middleware@2.0.7:
+  http-proxy-middleware@2.0.9:
     dependencies:
       '@types/http-proxy': 1.17.14
       http-proxy: 1.18.1
@@ -4583,7 +4579,7 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  open@10.1.0:
+  open@10.1.1:
     dependencies:
       default-browser: 5.2.1
       define-lazy-prop: 3.0.0
@@ -4682,7 +4678,7 @@ snapshots:
 
   pathe@2.0.3: {}
 
-  pem@1.15.1:
+  pem@1.14.8:
     dependencies:
       es6-promisify: 7.0.0
       md5: 2.3.0
@@ -4772,44 +4768,42 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.5
 
-  react-cosmos-core@6.2.0:
+  react-cosmos-core@7.0.0:
     dependencies:
       js-base64: 3.7.7
       lodash-es: 4.17.21
-      react-is: 18.3.1
 
-  react-cosmos-dom@6.2.0:
+  react-cosmos-dom@7.0.0:
     dependencies:
       lodash-es: 4.17.21
-      react-cosmos-core: 6.2.0
-      react-cosmos-renderer: 6.2.0
+      react-cosmos-core: 7.0.0
+      react-cosmos-renderer: 7.0.0
 
-  react-cosmos-renderer@6.2.0:
+  react-cosmos-renderer@7.0.0:
     dependencies:
       lodash-es: 4.17.21
-      react-cosmos-core: 6.2.0
-      react-is: 18.3.1
+      react-cosmos-core: 7.0.0
 
-  react-cosmos-ui@6.2.3:
+  react-cosmos-ui@7.0.0:
     dependencies:
       lodash-es: 4.17.21
-      react-cosmos-core: 6.2.0
+      react-cosmos-core: 7.0.0
 
-  react-cosmos@6.2.3:
+  react-cosmos@7.0.0:
     dependencies:
       '@skidding/launch-editor': 2.2.3
       chokidar: 3.6.0
       express: 4.21.2
       glob: 10.4.5
-      http-proxy-middleware: 2.0.7
+      http-proxy-middleware: 2.0.9
       lodash-es: 4.17.21
       micromatch: 4.0.8
-      open: 10.1.0
-      pem: 1.15.1
-      react-cosmos-core: 6.2.0
-      react-cosmos-renderer: 6.2.0
-      react-cosmos-ui: 6.2.3
-      ws: 8.18.0
+      open: 10.1.1
+      pem: 1.14.8
+      react-cosmos-core: 7.0.0
+      react-cosmos-renderer: 7.0.0
+      react-cosmos-ui: 7.0.0
+      ws: 8.18.1
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/express'
@@ -4819,8 +4813,6 @@ snapshots:
       - utf-8-validate
 
   react-error-overlay@6.0.9: {}
-
-  react-is@18.3.1: {}
 
   react-plugin@3.0.0-alpha.4:
     dependencies:
@@ -5392,7 +5384,7 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.1.0
 
-  ws@8.18.0: {}
+  ws@8.18.1: {}
 
   y18n@5.0.8: {}
 

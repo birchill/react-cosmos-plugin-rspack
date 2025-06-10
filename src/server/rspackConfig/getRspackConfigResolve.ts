@@ -5,17 +5,17 @@ import type { Configuration, ResolveOptions } from '@rspack/core';
 import { resolveFromSilent } from '../utils/resolveSilent.js';
 
 export function getRspackConfigResolve(
-  cosmosConfig: CosmosConfig,
+  config: CosmosConfig,
   rspackConfig: Configuration
 ): ResolveOptions {
-  return resolveLocalReactDeps(cosmosConfig, rspackConfig.resolve);
+  return resolveLocalReactDeps(config, rspackConfig.resolve);
 }
 
 function resolveLocalReactDeps(
-  cosmosConfig: CosmosConfig,
+  config: CosmosConfig,
   resolve: ResolveOptions = {}
 ): ResolveOptions {
-  const { rootDir } = cosmosConfig;
+  const { rootDir } = config;
 
   let alias = resolve.alias || {};
 

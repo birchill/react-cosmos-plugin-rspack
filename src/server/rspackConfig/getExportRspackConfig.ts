@@ -12,17 +12,17 @@ import { resolveRspackClientPath } from './resolveRspackClientPath.js';
 import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js';
 
 export async function getExportRspackConfig(
-  cosmosConfig: CosmosConfig,
+  config: CosmosConfig,
   userRspack: typeof rspack
 ): Promise<Configuration> {
-  const baseRspackConfig = await getUserRspackConfig(cosmosConfig);
+  const baseRspackConfig = await getUserRspackConfig(config);
   return {
     ...baseRspackConfig,
     entry: getEntry(),
-    output: getOutput(cosmosConfig),
-    module: getRspackConfigModule(cosmosConfig, baseRspackConfig),
-    resolve: getRspackConfigResolve(cosmosConfig, baseRspackConfig),
-    plugins: getPlugins(cosmosConfig, baseRspackConfig, userRspack),
+    output: getOutput(config),
+    module: getRspackConfigModule(config, baseRspackConfig, 'export'),
+    resolve: getRspackConfigResolve(config, baseRspackConfig),
+    plugins: getPlugins(config, baseRspackConfig, userRspack),
     experiments: getExperiments(baseRspackConfig),
   };
 }
@@ -35,10 +35,9 @@ function getEntry() {
   return [devtoolsHook, clientIndex];
 }
 
-function getOutput(cosmosConfig: CosmosConfig) {
-  const { exportPath, publicUrl } = cosmosConfig;
-  const { includeHashInOutputFilename } =
-    createRspackCosmosConfig(cosmosConfig);
+function getOutput(config: CosmosConfig) {
+  const { exportPath, publicUrl } = config;
+  const { includeHashInOutputFilename } = createRspackCosmosConfig(config);
 
   return {
     path: path.join(exportPath, publicUrl),
@@ -50,12 +49,12 @@ function getOutput(cosmosConfig: CosmosConfig) {
 }
 
 function getPlugins(
-  cosmosConfig: CosmosConfig,
+  config: CosmosConfig,
   baseRspackConfig: Configuration,
   userRspack: typeof rspack
 ) {
   const existingPlugins = ignoreEmptyRspackPlugins(baseRspackConfig.plugins);
-  const globalsPlugin = getGlobalsPlugin(cosmosConfig, userRspack, false);
+  const globalsPlugin = getGlobalsPlugin(config, userRspack, false);
   const noEmitErrorsPlugin = new userRspack.NoEmitOnErrorsPlugin();
 
   return ensureHtmlPlugin([

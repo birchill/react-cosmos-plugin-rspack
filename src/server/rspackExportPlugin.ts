@@ -4,13 +4,13 @@ import type { Configuration, rspack, StatsCompilation } from '@rspack/core';
 import { getRspack } from './getRspack.js';
 import { getExportRspackConfig } from './rspackConfig/getExportRspackConfig.js';
 
-export async function rspackExportPlugin({ cosmosConfig }: ExportPluginArgs) {
-  const userRspack = getRspack(cosmosConfig.rootDir);
+export async function rspackExportPlugin({ config }: ExportPluginArgs) {
+  const userRspack = getRspack(config.rootDir);
   if (!userRspack) {
     return;
   }
 
-  const rspackConfig = await getExportRspackConfig(cosmosConfig, userRspack);
+  const rspackConfig = await getExportRspackConfig(config, userRspack);
   try {
     await runRspackCompiler(userRspack, rspackConfig);
   } catch (err) {

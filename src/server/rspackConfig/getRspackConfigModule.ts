@@ -1,29 +1,38 @@
 import type { CosmosConfig } from 'react-cosmos';
+import type { CosmosMode } from 'react-cosmos-core';
 import type { Configuration, ModuleOptions, RuleSetRule } from '@rspack/core';
 import { resolveRspackClientPath } from './resolveRspackClientPath.js';
 import { resolveRspackLoaderPath } from './resolveRspackLoaderPath.js';
 
 export function getRspackConfigModule(
-  cosmosConfig: CosmosConfig,
-  rspackConfig: Configuration
+  config: CosmosConfig,
+  rspackConfig: Configuration,
+  mode: CosmosMode
 ): ModuleOptions {
   return {
     ...rspackConfig.module,
-    rules: getRules(cosmosConfig, rspackConfig),
+    rules: getRules(config, rspackConfig, mode),
   };
 }
 
-function getRules(cosmosConfig: CosmosConfig, { module }: Configuration) {
+function getRules(
+  config: CosmosConfig,
+  { module }: Configuration,
+  mode: CosmosMode
+) {
   const existingRules = (module && module.rules) || [];
-  return [...existingRules, getUserImportsLoaderRule(cosmosConfig)];
+  return [...existingRules, getUserImportsLoaderRule(config, mode)];
 }
 
-function getUserImportsLoaderRule(cosmosConfig: CosmosConfig): RuleSetRule {
+function getUserImportsLoaderRule(
+  config: CosmosConfig,
+  mode: CosmosMode
+): RuleSetRule {
   return {
     include: resolveRspackClientPath('userImports'),
     use: {
       loader: resolveRspackLoaderPath(),
-      options: { cosmosConfig },
+      options: { config, mode },
     },
   };
 }
