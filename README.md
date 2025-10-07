@@ -22,19 +22,3 @@ Add the plugin to your `cosmos.config.json`, e.g.:
    }
  }
 ```
-
-## Developing
-
-The easiest way to develop is using [`yalc`](https://github.com/wclr/yalc).
-
-Install it globally and then from this repo do:
-
-```
-yalc publish
-```
-
-Then in your project that is using React Cosmos run:
-
-```
-yalc add react-cosmos-plugin-rspack
-```
