@@ -18,10 +18,10 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "10.0.1",
+    "@rollup/plugin-virtual": "3.0.2",
     "@rspack/core": "1.5.8",
     "@types/node": "22.15.30",
     "@types/webpack-hot-middleware": "2.25.11",
-    "esbuild": "0.25.10",
     "husky": "9.1.7",
     "knip": "5.64.2",
     "lint-staged": "16.2.3",
@@ -31,7 +31,7 @@
     "react-error-overlay": "6.0.9",
     "react-plugin": "3.0.0-alpha.4",
     "release-it": "19.0.5",
-    "tsup": "8.5.0",
+    "tsdown": "0.15.6",
     "typescript": "5.9.3"
   },
   "prettier": {
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "prepublishOnly": "pnpm build",
-    "build": "tsup && tsup --config tsup.ui.config.ts && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
+    "build": "tsdown && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
     "release": "release-it",
     "prepare": "husky"
   },
