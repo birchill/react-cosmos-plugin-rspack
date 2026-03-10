@@ -7,7 +7,9 @@ export default defineConfig([
     entry: {
       'server/rspackServerPlugin': 'src/server/rspackServerPlugin.ts',
     },
-    external: ['./userImports.js'],
+    deps: {
+      neverBundle: ['./userImports.js'],
+    },
   },
 
   // client
@@ -19,7 +21,9 @@ export default defineConfig([
       'client/errorOverlay/reactErrorOverlay':
         'src/client/errorOverlay/reactErrorOverlay.ts',
     },
-    external: ['react'],
+    deps: {
+      neverBundle: ['react'],
+    },
     platform: 'browser',
   },
 
