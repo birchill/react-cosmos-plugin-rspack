@@ -10,6 +10,7 @@ export default defineConfig([
     deps: {
       neverBundle: ['./userImports.js'],
     },
+    fixedExtension: false,
   },
 
   // client
@@ -24,6 +25,7 @@ export default defineConfig([
     deps: {
       neverBundle: ['react'],
     },
+    fixedExtension: false,
     platform: 'browser',
   },
 
@@ -33,6 +35,7 @@ export default defineConfig([
       'process.env.NODE_ENV': '"production"',
     },
     entry: { 'ui/build': 'src/ui/WebpackRendererError.tsx' },
+    fixedExtension: false,
     plugins: [
       virtual({
         react: 'module.exports = React',
