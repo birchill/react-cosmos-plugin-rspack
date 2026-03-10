@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.2](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v2.0.1...v2.0.2) (2026-03-10)
+
+### Bug Fixes
+
+- fix output paths ([bd7c0c6](https://github.com/birchill/react-cosmos-plugin-rspack/commit/bd7c0c6aa7a77e84440cb2d659df115ff8d5c696))
+
 ## [2.0.1](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v2.0.0...v2.0.1) (2026-03-10)
 
 ### Bug Fixes
