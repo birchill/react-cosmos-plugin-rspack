@@ -14,7 +14,6 @@ import {
   ignoreEmptyRspackPlugins,
 } from './plugins.js';
 import { resolveRspackClientPath } from './resolveRspackClientPath.js';
-import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js';
 
 export async function getDevRspackConfig(
   config: CosmosConfig,
@@ -29,7 +28,6 @@ export async function getDevRspackConfig(
     module: getRspackConfigModule(config, baseRspackConfig, 'dev'),
     resolve: getRspackConfigResolve(config, baseRspackConfig),
     plugins: getPlugins(config, baseRspackConfig, userRspack),
-    experiments: getExperiments(baseRspackConfig),
   };
 
   // The following comment is from react-cosmos-plugin-webpack and likely
@@ -98,8 +96,4 @@ function getPlugins(
 function getHotMiddlewareEntry(reloadOnFail: boolean) {
   const clientPath = resolve('webpack-hot-middleware/client');
   return `${clientPath}?reload=${reloadOnFail}&overlay=false`;
-}
-
-function getExperiments(baseWebpackConfig: Configuration) {
-  return ensureRspackConfigTopLevelAwait(baseWebpackConfig);
 }

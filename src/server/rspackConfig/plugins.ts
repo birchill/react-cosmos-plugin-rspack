@@ -1,5 +1,10 @@
 import type { CosmosConfig } from 'react-cosmos';
-import type rspack from '@rspack/core';
+import type {
+  Configuration,
+  rspack,
+  RspackPluginFunction,
+  RspackPluginInstance,
+} from '@rspack/core';
 
 import { getRspackNodeEnv } from './getRspackNodeEnv.js';
 
@@ -18,7 +23,7 @@ export function getGlobalsPlugin(
 }
 
 export function hasPlugin(
-  plugins: void | rspack.RspackPluginInstance[],
+  plugins: void | RspackPluginInstance[],
   pluginName: string
 ) {
   return (
@@ -28,17 +33,17 @@ export function hasPlugin(
 }
 
 export function isInstanceOfRspackPlugin(
-  plugin: rspack.RspackPluginInstance,
+  plugin: RspackPluginInstance,
   constructorName: string
 ) {
   return plugin.constructor && plugin.constructor.name === constructorName;
 }
 
 export function ignoreEmptyRspackPlugins(
-  plugins: rspack.Configuration['plugins'] = []
+  plugins: Configuration['plugins'] = []
 ) {
   return plugins.filter(Boolean) as Array<
-    rspack.RspackPluginInstance | rspack.RspackPluginFunction
+    RspackPluginInstance | RspackPluginFunction
   >;
 }
 
