@@ -9,7 +9,6 @@ import { getRspackConfigResolve } from './getRspackConfigResolve.js';
 import { ensureHtmlPlugin } from './htmlPlugin.js';
 import { getGlobalsPlugin, ignoreEmptyRspackPlugins } from './plugins.js';
 import { resolveRspackClientPath } from './resolveRspackClientPath.js';
-import { ensureRspackConfigTopLevelAwait } from './rspackConfigTopLevelAwait.js';
 
 export async function getExportRspackConfig(
   config: CosmosConfig,
@@ -23,7 +22,6 @@ export async function getExportRspackConfig(
     module: getRspackConfigModule(config, baseRspackConfig, 'export'),
     resolve: getRspackConfigResolve(config, baseRspackConfig),
     plugins: getPlugins(config, baseRspackConfig, userRspack),
-    experiments: getExperiments(baseRspackConfig),
   };
 }
 
@@ -62,8 +60,4 @@ function getPlugins(
     globalsPlugin,
     noEmitErrorsPlugin,
   ]);
-}
-
-function getExperiments(baseWebpackConfig: Configuration) {
-  return ensureRspackConfigTopLevelAwait(baseWebpackConfig);
 }

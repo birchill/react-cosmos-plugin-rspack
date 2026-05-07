@@ -91,9 +91,6 @@ export function getDefaultRspackConfig(rootDir: string): Configuration {
       builtAt: true,
     },
     infrastructureLogging: { level: 'warn' },
-    experiments: {
-      topLevelAwait: true,
-    },
   };
 
   return {
