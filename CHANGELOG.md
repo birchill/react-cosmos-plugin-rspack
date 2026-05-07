@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.0.0](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v2.0.2...v3.0.0) (2026-05-07)
+
+### ⚠ BREAKING CHANGES
+
+- Requires rspack 2
+
+### Features
+
+- update to rspack 2 ([0df2a0c](https://github.com/birchill/react-cosmos-plugin-rspack/commit/0df2a0cde794b04d4063c03efb55440cd3bfbad0))
+
 ## [2.0.2](https://github.com/birchill/react-cosmos-plugin-rspack/compare/v2.0.1...v2.0.2) (2026-03-10)
 
 ### Bug Fixes
