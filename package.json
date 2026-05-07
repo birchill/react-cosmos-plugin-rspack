@@ -41,6 +41,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "engines": {
+    "pnpm": ">=11"
+  },
   "scripts": {
     "prepublishOnly": "pnpm build",
     "build": "tsdown && cp src/server/rspackConfig/userImportsLoader.cjs dist/server",
