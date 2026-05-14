@@ -34,15 +34,12 @@
     "tsdown": "0.21.1",
     "typescript": "5.9.3"
   },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
   "engines": {
     "pnpm": ">=11"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "engines": {}
   },
   "scripts": {
     "prepublishOnly": "pnpm build",
@@ -53,10 +50,5 @@
   "peerDependencies": {
     "@rspack/core": ">=2.0.0",
     "react-cosmos": "^7.1.0"
-  },
-  "lint-staged": {
-    "*.{ts,json,md}": [
-      "prettier --write"
-    ]
   }
 }
